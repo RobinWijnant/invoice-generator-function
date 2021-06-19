@@ -4,7 +4,7 @@ import { formatDate } from "./utils";
 // import libre from "libreoffice-convert";
 
 export const createWorkbook = (buffer: Buffer) => {
-  return xlsx.read(buffer);
+  return xlsx.read(buffer, { type: "buffer" });
 };
 
 export const fillInInvoiceTemplate = (
