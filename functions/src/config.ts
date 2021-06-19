@@ -2,8 +2,8 @@ import * as functions from "firebase-functions";
 
 export interface Config {
   storage: {
-    bucket: string;
-    templateXlsxFileName: string;
+    "bucket-name": string;
+    "template-xlsx-file-name": string;
   };
 }
 
