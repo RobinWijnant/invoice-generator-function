@@ -1,4 +1,13 @@
 {
-  "indexes": [],
+  "indexes": [
+    {
+      "collectionGroup": "yearlyRecurringInvoices",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "isDelivered", "order": "ASCENDING" },
+        { "fieldPath": "billingDate", "order": "ASCENDING" }
+      ]
+    }
+  ],
   "fieldOverrides": []
 }
