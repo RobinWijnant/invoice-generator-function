@@ -1,8 +1,7 @@
 import * as admin from "firebase-admin";
 import { getDateWithoutTime } from "./utils";
 
-export interface YearlyRecurringInvoiceDocument
-  extends FirebaseFirestore.DocumentData {
+export interface InvoiceDocument extends FirebaseFirestore.DocumentData {
   id: string;
   referenceId: number;
   client: {
@@ -31,6 +30,6 @@ export const getTodaysInvoiceDocuments = async () => {
       ({
         id: querySnapshot.id,
         ...querySnapshot.data(),
-      } as YearlyRecurringInvoiceDocument)
+      } as InvoiceDocument)
   );
 };

@@ -7,4 +7,5 @@ export interface Config {
   };
 }
 
-export const config = functions.config() as Config;
+const config = functions.config() as Config;
+export default config;
