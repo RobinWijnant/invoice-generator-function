@@ -11,7 +11,8 @@ export const fillInInvoiceTemplate = (
   workbook: xlsx.WorkBook,
   invoiceDocument: InvoiceDocument
 ) => {
-  const sheet = workbook.Sheets["Blad1"];
+  const sheetNames = workbook.SheetNames;
+  const sheet = workbook.Sheets[sheetNames[0]];
   sheet["A7"] = { v: invoiceDocument.client.fullName };
   sheet["A10"] = { v: `Datum: ${formatDate(invoiceDocument.billingDate)}` };
   sheet["A11"] = {

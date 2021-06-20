@@ -22,14 +22,15 @@ export const getTodaysInvoiceDocuments = async () => {
     .firestore()
     .collection(Collection.YearlyRecurringInvoices)
     .where("isDelivered", "==", false)
-    .where("billingDate", "<=", getDateWithoutTime())
+    .where("billingDate", "<=", getDateWithoutTime().getTime())
     .get();
 
-  return firestoreResult.docs.map(
-    (querySnapshot) =>
-      ({
-        id: querySnapshot.id,
-        ...querySnapshot.data(),
-      } as InvoiceDocument)
-  );
+  return firestoreResult.docs.map((querySnapshot) => {
+    const document = querySnapshot.data();
+    return {
+      id: querySnapshot.id,
+      ...document,
+      billingDate: new Date(document.billingDate),
+    } as InvoiceDocument;
+  });
 };
