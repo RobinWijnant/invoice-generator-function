@@ -4,6 +4,7 @@ export interface Config {
   storage: {
     "bucket-name": string;
     "template-xlsx-file-name": string;
+    "output-folder": string;
   };
 }
 

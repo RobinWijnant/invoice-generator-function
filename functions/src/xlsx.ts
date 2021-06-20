@@ -16,8 +16,15 @@ export const fillInInvoiceTemplate = (
   sheet["A7"] = { v: invoiceDocument.client.fullName };
   sheet["A10"] = { v: `Datum: ${formatDate(invoiceDocument.billingDate)}` };
   sheet["A11"] = {
-    v: `Factuurnummer: ${String(invoiceDocument.referenceId).padStart(4, "0")}`,
+    v: `Factuurnummer: ${invoiceDocument.referenceId}`,
   };
+};
+
+export const createBuffer = (workbook: xlsx.WorkBook) => {
+  return xlsx.write(workbook, {
+    bookType: "xlsx",
+    type: "buffer",
+  });
 };
 
 // export const convertToPdf = (workbook: xlsx.WorkBook) => {

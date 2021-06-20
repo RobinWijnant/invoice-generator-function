@@ -3,7 +3,7 @@ import { getDateWithoutTime } from "./utils";
 
 export interface InvoiceDocument extends FirebaseFirestore.DocumentData {
   id: string;
-  referenceId: number;
+  referenceId: string;
   client: {
     fullName: string;
     email: string;
@@ -31,6 +31,7 @@ export const getTodaysInvoiceDocuments = async () => {
       id: querySnapshot.id,
       ...document,
       billingDate: new Date(document.billingDate),
+      referenceId: String(document.referenceId).padStart(4, "0"),
     } as InvoiceDocument;
   });
 };

@@ -22,14 +22,25 @@ export const sendInvoices = functions
     const buffer = await storage.getFile(
       config.storage["template-xlsx-file-name"]
     );
-    const xlsxInvoiceTemplate = xlsx.createWorkbook(buffer);
+    const xlsxInvoice = xlsx.createWorkbook(buffer);
 
     invoiceDocuments.forEach((invoiceDocument) => {
       console.log(
         `Creating invoice for ${invoiceDocument.client.organization}`
       );
 
-      xlsx.fillInInvoiceTemplate(xlsxInvoiceTemplate, invoiceDocument);
+      xlsx.fillInInvoiceTemplate(xlsxInvoice, invoiceDocument);
+
+      console.log(
+        `Saving invoice to ${config.storage["output-folder"]} folder in storage`
+      );
+
+      const xlsxBuffer = xlsx.createBuffer(xlsxInvoice);
+      storage.saveFile(
+        `${config.storage["output-folder"]}/${invoiceDocument.referenceId} - ${invoiceDocument.client.organization}.xlsx`,
+        xlsxBuffer,
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      );
 
       // const pdfInvoice = xlsx.convertToPdf(xlsxInvoice);
       // Save xslx and pdf to storage bucket

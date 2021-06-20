@@ -6,8 +6,9 @@ Setup environment variables for the firebase function
 
 ```
 firebase functions:config:set \
-  cloudStorage.bucket="gs://your-bucket.com" \
-  cloudStorage.templateXlsx="template.xlsx"
+  storage.bucket-name="gs://robinwijnant.appspot.com" \
+  storage.template-xlsx-file-name="template.xlsx" \
+  storage.output-folder="invoices"
 yarn deploy
 ```
 
