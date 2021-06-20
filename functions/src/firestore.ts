@@ -22,7 +22,7 @@ export const getTodaysInvoiceDocuments = async () => {
     .firestore()
     .collection(Collection.YearlyRecurringInvoices)
     .where("isDelivered", "==", false)
-    .where("billingDate", "<=", getDateWithoutTime().getTime())
+    .where("billingDate", "<=", getDateWithoutTime())
     .get();
 
   return firestoreResult.docs.map((querySnapshot) => {
